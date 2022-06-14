@@ -12,11 +12,15 @@ const UserContext = ({ children }) => {
 
 	useEffect(() => {
 		const getData = async () => {
-			const res = await fetch(
-				'https://run.mocky.io/v3/ceb09528-8228-4a95-b7d9-c1f945023c92'
-			);
-			const data = await res.json();
-			setPeople(data);
+			try {
+				const res = await fetch(
+					'https://run.mocky.io/v3/ceb09528-8228-4a95-b7d9-c1f945023c92'
+				);
+				const data = await res.json();
+				setPeople(data);
+			} catch (e) {
+				console.log(e);
+			}
 		};
 
 		return () => getData();
