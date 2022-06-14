@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import Person from './components/Person';
+import AuthAlert from './components/AuthAlert';
 
 function App() {
 	return (
@@ -11,6 +12,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/person" element={<Person />} />
 			</Routes>
+			<AuthAlert />
 		</div>
 	);
 }

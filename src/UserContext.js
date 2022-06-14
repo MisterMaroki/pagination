@@ -8,10 +8,12 @@ const UserContext = ({ children }) => {
 	const [people, setPeople] = React.useState(
 		JSON.parse(localStorage.getItem('people')) || []
 	);
-	console.log(
-		'🚀 ~ file: UserContext.js ~ line 10 ~ UserContext ~ people',
-		people
-	);
+
+	const [alert, setAlert] = useState({
+		open: false,
+		message: '',
+		type: 'success',
+	});
 
 	useEffect(() => {
 		localStorage.setItem('user', userId);
@@ -48,7 +50,9 @@ const UserContext = ({ children }) => {
 	// }, [people]);
 
 	return (
-		<User.Provider value={{ userId, setUserId, people, setPeople }}>
+		<User.Provider
+			value={{ userId, setUserId, people, setPeople, alert, setAlert }}
+		>
 			{children}
 		</User.Provider>
 	);

@@ -219,6 +219,10 @@ export default function MyTable() {
 								<TableRow
 									key={firstName}
 									onClick={() => handleRowClick(personId)}
+									sx={{
+										cursor: 'pointer',
+										'&:hover': { backgroundColor: 'whitesmoke' },
+									}}
 								>
 									<TableCell style={{ width: 150 }} component="th" scope="row">
 										{firstName.toString() + ' ' + lastName.toString()}

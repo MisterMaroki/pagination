@@ -9,13 +9,13 @@ import {
 	TextField,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { UserState } from '../UserContext';
 import { palindrome } from '../utils/palindrome';
 
 const Person = () => {
+	const { people, userId, setPeople, setAlert } = UserState();
 	const [inputData, setInputData] = useState(null);
-	const { people, userId, setPeople } = UserState();
 	const navigate = useNavigate();
 	const backHome = (e) => {
 		navigate('/');
@@ -37,7 +37,6 @@ const Person = () => {
 	useEffect(() => {
 		const getUserData = async () => {
 			const thisPerson = people.find((x) => x.personId === userId);
-
 			setInputData(thisPerson);
 		};
 		return () => getUserData();
@@ -61,7 +60,6 @@ const Person = () => {
 		setInputData((prev) => ({
 			...prev,
 			favouriteSports: prev.favouriteSports.map((item) => {
-				console.log('item', item.sportId === index + 1);
 				return item.sportId === index + 1
 					? { ...item, isEnabled: e.target.checked }
 					: item;
@@ -81,6 +79,11 @@ const Person = () => {
 					  }
 					: { ...x, isPalindrome: palindrome(`${x.firstName} ${x.lastName}`) };
 			});
+		});
+		setAlert({
+			open: true,
+			message: `Person #${userId} has been updated.`,
+			type: 'success',
 		});
 	};
 
@@ -136,7 +139,7 @@ const Person = () => {
 						<Switch
 							checked={inputData.isValid}
 							onChange={(e) => handleSwitch(e, 'isValid')}
-							color="secondary"
+							color="warning"
 						/>
 					</Box>
 					<Box
@@ -150,7 +153,7 @@ const Person = () => {
 						<Switch
 							checked={inputData.isAuthorised}
 							onChange={(e) => handleSwitch(e, 'isAuthorised')}
-							color="secondary"
+							color="primary"
 						/>
 					</Box>
 					<Box
