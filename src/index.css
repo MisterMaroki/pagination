@@ -12,8 +12,16 @@ body {
 }
 
 body * {
-
   color: #0b1929;
+
+}
+
+.white-text {
+  color: whitesmoke !important
+}
+
+.bold-text {
+  font-weight: bold;
 }
 
 

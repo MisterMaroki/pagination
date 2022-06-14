@@ -17,17 +17,14 @@ const AuthAlert = () => {
 
 	return (
 		<div>
-			<Snackbar
-				open={alert.open}
-				autoHideDuration={3000}
-				onClose={handleClose}
-				// message={alert.message}
-			>
+			<Snackbar open={alert.open} autoHideDuration={3000} onClose={handleClose}>
 				<Alert
 					onClose={handleClose}
 					elevation={10}
 					variant="filled"
-					severity={alert.type}
+					severity={'success'}
+					color="info"
+					sx={{ backgroundColor: 'lightgreen !important' }}
 				>
 					{alert.message}
 				</Alert>

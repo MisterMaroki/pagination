@@ -281,37 +281,37 @@ export const textFieldSx = () => {
 	return {
 		marginBottom: 0,
 		width: '100%',
-		maxWidth: '300px',
+		maxWidth: '200px',
 		padding: 0,
 
 		input: {
 			background: 'white',
 			borderRadius: 1,
-			color: 'blue',
+			color: 'black',
 		},
 		'& .MuiOutlinedInput-root.Mui-focused': {
 			'& > fieldset': {
-				borderColor: 'blue',
+				borderColor: 'black',
 			},
 		},
 		'& label.Mui-focused': {
-			color: 'blue',
+			color: 'black',
 		},
 		'& label': {
-			color: 'blue',
+			color: 'black',
 		},
 		'& .MuiInput-underline:after': {
-			borderBottomColor: 'blue',
+			borderBottomColor: 'black',
 		},
 		'& .MuiOutlinedInput-root': {
 			'& fieldset': {
 				borderColor: 'trnsparent',
 			},
 			'&:hover fieldset': {
-				borderColor: 'blue',
+				borderColor: 'black',
 			},
 			'&.Mui-focused fieldset': {
-				borderColor: 'blue',
+				borderColor: 'black',
 			},
 		},
 	};

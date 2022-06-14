@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { UserState } from '../UserContext';
 import { palindrome } from '../utils/palindrome';
+import { textFieldSx } from './MyTable';
 
 const Person = () => {
 	const { people, userId, setPeople, setAlert } = UserState();
@@ -102,6 +103,7 @@ const Person = () => {
 					<Box display="flex" gap="1rem" sx={boxSx}>
 						<h4>First Name</h4>{' '}
 						<TextField
+							sx={textFieldSx}
 							label="First Name"
 							value={inputData.firstName}
 							onChange={(e) => updateInputData(e, 'firstName')}
@@ -110,6 +112,7 @@ const Person = () => {
 					<Box display="flex" sx={boxSx}>
 						<h4>Last Name</h4>{' '}
 						<TextField
+							sx={textFieldSx}
 							label="Last Name"
 							value={inputData.lastName}
 							onChange={(e) => updateInputData(e, 'lastName')}
