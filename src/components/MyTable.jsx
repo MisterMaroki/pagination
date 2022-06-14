@@ -1,3 +1,4 @@
+import { TableHeader } from './TableHeader';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
@@ -15,6 +16,8 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import { UserState } from '../UserContext';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 function TablePaginationActions(props) {
 	const theme = useTheme();
@@ -37,7 +40,7 @@ function TablePaginationActions(props) {
 	};
 
 	return (
-		<Box sx={{ flexShrink: 0, ml: 2.5 }}>
+		<Box sx={{ flexShrink: 0, ml: 2.5, alignSelf: 'flex-end' }}>
 			<IconButton
 				onClick={handleFirstPageButtonClick}
 				disabled={page === 0}
@@ -85,6 +88,35 @@ TablePaginationActions.propTypes = {
 	rowsPerPage: PropTypes.number.isRequired,
 };
 
+const columns = [
+	{ id: 'name', label: 'Name', minWidth: 130, align: 'center' },
+	{ id: 'enabled', label: 'Enabled', minWidth: 100, align: 'center' },
+	{
+		id: 'valid',
+		label: 'Valid',
+		minWidth: 100,
+		align: 'center',
+	},
+	{
+		id: 'authorized',
+		label: 'Authorized',
+		minWidth: 100,
+		align: 'center',
+	},
+	{
+		id: 'palindrome',
+		label: 'Palindrome',
+		minWidth: 100,
+		align: 'center',
+	},
+	{
+		id: 'sports',
+		label: 'Favourite Sports',
+		minWidth: 170,
+		align: 'center',
+	},
+];
+
 // favouriteSports: (3) [{…}, {…}, {…}]
 // firstName: "Frank"
 // isAuthorised: false
@@ -96,7 +128,7 @@ TablePaginationActions.propTypes = {
 
 function createData(person) {
 	const {
-		favoriteSports,
+		favouriteSports,
 		firstName,
 		isAuthorised,
 		isEnabled,
@@ -106,7 +138,7 @@ function createData(person) {
 		personId,
 	} = person;
 	return {
-		favoriteSports,
+		favouriteSports,
 		firstName,
 		isAuthorised,
 		isEnabled,
@@ -119,20 +151,11 @@ function createData(person) {
 
 export default function MyTable() {
 	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(5);
-	const [people, setPeople] = React.useState([]);
+	const [rowsPerPage, setRowsPerPage] = React.useState(3);
 
-	React.useEffect(() => {
-		const getData = async () => {
-			const res = await fetch(
-				'https://run.mocky.io/v3/ceb09528-8228-4a95-b7d9-c1f945023c92'
-			);
-			const data = await res.json();
-			setPeople(data);
-		};
+	const { userId, setUserId, people } = UserState();
 
-		return () => getData();
-	}, []);
+	const navigate = useNavigate();
 
 	const rows = people.map((x) => createData(x));
 	// Avoid a layout jump when reaching the last page with empty rows.
@@ -148,16 +171,22 @@ export default function MyTable() {
 		setPage(0);
 	};
 
+	const handleRowClick = (id) => {
+		setUserId(id);
+		navigate('/person');
+	};
+
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+				<TableHeader columns={columns} />
 				<TableBody>
 					{(rowsPerPage > 0
 						? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						: rows
 					).map((row) => {
 						const {
-							favoriteSports,
+							favouriteSports,
 							firstName,
 							isAuthorised,
 							isEnabled,
@@ -166,15 +195,29 @@ export default function MyTable() {
 							lastName,
 							personId,
 						} = row;
+						let sports = favouriteSports.map((x) => x.name).join(', ');
 
 						return (
-							<TableRow key={firstName}>
-								<TableCell component="th" scope="row">
-									{firstName}
+							<TableRow
+								key={firstName}
+								onClick={() => handleRowClick(personId)}
+							>
+								<TableCell style={{ width: 150 }} component="th" scope="row">
+									{firstName.toString() + ' ' + lastName.toString()}
 								</TableCell>
-								<TableCell style={{ width: 160 }} align="right">
-									{isEnabled}
+								<TableCell style={{ width: 100 }} align="center">
+									{isEnabled.toString()}
 								</TableCell>
+								<TableCell style={{ width: 100 }} align="center">
+									{isValid.toString()}
+								</TableCell>
+								<TableCell style={{ width: 160 }} align="center">
+									{isAuthorised.toString()}
+								</TableCell>
+								<TableCell style={{ width: 160 }} align="center">
+									{isPalindrome.toString()}
+								</TableCell>
+								<TableCell style={{ width: 160 }}>{sports}</TableCell>
 							</TableRow>
 						);
 					})}
@@ -188,7 +231,7 @@ export default function MyTable() {
 				<TableFooter>
 					<TableRow>
 						<TablePagination
-							rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+							rowsPerPageOptions={[3, 10, 25, { label: 'All', value: -1 }]}
 							colSpan={3}
 							count={rows.length}
 							rowsPerPage={rowsPerPage}
