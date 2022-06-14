@@ -14,15 +14,17 @@
 
 open a new terminal in an empty directory, run
 
-### 'gh repo clone MisterMaroki/pagination'
+### `gh repo clone MisterMaroki/pagination`
 
 once you have successfully cloned this application, continue to run...
 
-### 'npm i' or 'npm install'
+### `npm i`
 
 or
 
-### 'pnpm i' (if you care for your time)
+### `pnpm i`
+
+(if you care for your time)
 
 This will install all packages required to run the application. Then run...
 
