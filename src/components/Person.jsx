@@ -16,6 +16,10 @@ import { palindrome } from '../utils/palindrome';
 const Person = () => {
 	const { people, userId, setPeople, setAlert } = UserState();
 	const [inputData, setInputData] = useState(null);
+	console.log(
+		'🚀 ~ file: Person.jsx ~ line 19 ~ Person ~ inputData',
+		inputData
+	);
 	const navigate = useNavigate();
 	const backHome = (e) => {
 		navigate('/');
@@ -35,7 +39,7 @@ const Person = () => {
 	// }, [userId]);
 
 	useEffect(() => {
-		const getUserData = async () => {
+		const getUserData = () => {
 			const thisPerson = people.find((x) => x.personId === userId);
 			setInputData(thisPerson);
 		};
@@ -59,10 +63,8 @@ const Person = () => {
 	const handleCheckBox = (e, index) => {
 		setInputData((prev) => ({
 			...prev,
-			favouriteSports: prev.favouriteSports.map((item) => {
-				return item.sportId === index + 1
-					? { ...item, isEnabled: e.target.checked }
-					: item;
+			favouriteSports: prev.favouriteSports.map((item, i) => {
+				return i === index ? { ...item, isEnabled: e.target.checked } : item;
 			}),
 		}));
 	};
