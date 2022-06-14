@@ -15,11 +15,8 @@ import { palindrome } from '../utils/palindrome';
 
 const Person = () => {
 	const { people, userId, setPeople, setAlert } = UserState();
-	const [inputData, setInputData] = useState(null);
-	console.log(
-		'🚀 ~ file: Person.jsx ~ line 19 ~ Person ~ inputData',
-		inputData
-	);
+	const [inputData, setInputData] = useState(() => people[userId - 1]);
+
 	const navigate = useNavigate();
 	const backHome = (e) => {
 		navigate('/');
@@ -38,13 +35,15 @@ const Person = () => {
 	// 	return () => getUserData();
 	// }, [userId]);
 
-	useEffect(() => {
-		const getUserData = () => {
-			const thisPerson = people.find((x) => x.personId === userId);
-			setInputData(thisPerson);
-		};
-		return () => getUserData();
-	}, [userId]);
+	//NOTE: this side effect works, but it also causes the 'inputData' to be null on first render, meaning form fields do not render after F5(refresh)
+
+	// useEffect(() => {
+	// 	const getUserData = () => {
+	// 		const thisPerson = people.find((x) => x.personId === userId);
+	// 		setInputData(thisPerson);
+	// 	};
+	// 	return () => getUserData();
+	// }, [userId]);
 
 	const updateInputData = (e, field) => {
 		setInputData((prev) => ({
