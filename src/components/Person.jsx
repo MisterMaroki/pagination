@@ -40,7 +40,7 @@ const Person = () => {
 			setInputData(thisPerson);
 		};
 		return () => getUserData();
-	}, [people, userId]);
+	}, [userId]);
 
 	const updateInputData = (e, field) => {
 		setInputData((prev) => ({
@@ -176,7 +176,7 @@ const Person = () => {
 	);
 };
 
-const boxSx = {
+export const boxSx = {
 	width: '100%',
 	maxWidth: '30vw',
 	justifyContent: 'space-between',
