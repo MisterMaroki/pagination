@@ -70,6 +70,16 @@ const Person = () => {
 	};
 
 	const saveUser = () => {
+		// [inputData.firstName, inputData.lastName].forEach((x) => {
+		if (/\d/.test(inputData.firstName || inputData.lastName)) {
+			setAlert({
+				open: true,
+				message: `Names must not contain numbers.`,
+				type: 'warning',
+			});
+			return;
+		}
+		// });
 		setPeople((prev) => {
 			return prev.map((x) => {
 				return x.personId === userId

@@ -22,8 +22,8 @@ const AuthAlert = () => {
 					elevation={10}
 					variant="filled"
 					severity={'success'}
-					color="info"
-					sx={{ backgroundColor: 'lightgreen' }}
+					color="warning"
+					sx={{ backgroundColor: alert.type === 'success' && 'lightgreen' }}
 				>
 					{alert.message}
 				</Alert>

@@ -93,23 +93,23 @@ TablePaginationActions.propTypes = {
 
 const columns = [
 	{ id: 'name', label: 'Name', minWidth: 130, align: 'center' },
-	{ id: 'enabled', label: 'Enabled', minWidth: 100, align: 'center' },
+	{ id: 'enabled', label: 'Enabled', minWidth: 60, align: 'center' },
 	{
 		id: 'valid',
 		label: 'Valid',
-		minWidth: 100,
+		minWidth: 60,
 		align: 'center',
 	},
 	{
 		id: 'authorized',
 		label: 'Authorized',
-		minWidth: 100,
+		minWidth: 60,
 		align: 'center',
 	},
 	{
 		id: 'palindrome',
 		label: 'Palindrome',
-		minWidth: 100,
+		minWidth: 60,
 		align: 'center',
 	},
 	{
@@ -158,7 +158,6 @@ export default function MyTable() {
 	const [search, setSearch] = React.useState('');
 
 	const { setUserId, people } = UserState();
-	console.log('🚀 ~ file: MyTable.jsx ~ line 160 ~ MyTable ~ people', people);
 
 	const navigate = useNavigate();
 
@@ -235,23 +234,23 @@ export default function MyTable() {
 									<TableCell style={{ width: 150 }} component="th" scope="row">
 										{firstName.toString() + ' ' + lastName.toString()}
 									</TableCell>
-									<TableCell style={{ width: 100 }} align="center">
+									<TableCell style={{ width: 80 }} align="center">
 										{/* {isEnabled.toString()} */}
 										{isEnabled ? <Check /> : <Close />}
 									</TableCell>
-									<TableCell style={{ width: 100 }} align="center">
+									<TableCell style={{ width: 80 }} align="center">
 										{/* {isValid.toString()} */}
 										{isValid ? <Check /> : <Close />}
 									</TableCell>
-									<TableCell style={{ width: 100 }} align="center">
+									<TableCell style={{ width: 80 }} align="center">
 										{/* {isAuthorised.toString()} */}
 										{isAuthorised ? <Check /> : <Close />}
 									</TableCell>
-									<TableCell style={{ width: 100 }} align="center">
+									<TableCell style={{ width: 80 }} align="center">
 										{/* {isPalindrome.toString()} */}
 										{isPalindrome ? <Check /> : <Close />}
 									</TableCell>
-									<TableCell style={{ width: 180 }}>{sports}</TableCell>
+									<TableCell style={{ width: 200 }}>{sports}</TableCell>
 								</TableRow>
 							);
 						})}
@@ -266,7 +265,7 @@ export default function MyTable() {
 						<TableRow>
 							<TablePagination
 								rowsPerPageOptions={[3, 10, 25, { label: 'All', value: -1 }]}
-								colSpan={3}
+								// colSpan={12}
 								count={rows.length}
 								rowsPerPage={rowsPerPage}
 								page={page}
