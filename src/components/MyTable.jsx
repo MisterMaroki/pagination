@@ -20,6 +20,7 @@ import { UserState } from '../UserContext';
 import { useNavigate } from 'react-router-dom';
 import { boxSx } from './Person';
 import { TextField } from '@mui/material';
+import { Check, Close } from '@mui/icons-material';
 
 function TablePaginationActions(props) {
 	const theme = useTheme();
@@ -235,18 +236,22 @@ export default function MyTable() {
 										{firstName.toString() + ' ' + lastName.toString()}
 									</TableCell>
 									<TableCell style={{ width: 100 }} align="center">
-										{isEnabled.toString()}
+										{/* {isEnabled.toString()} */}
+										{isEnabled ? <Check /> : <Close />}
 									</TableCell>
 									<TableCell style={{ width: 100 }} align="center">
-										{isValid.toString()}
+										{/* {isValid.toString()} */}
+										{isValid ? <Check /> : <Close />}
 									</TableCell>
-									<TableCell style={{ width: 160 }} align="center">
-										{isAuthorised.toString()}
+									<TableCell style={{ width: 100 }} align="center">
+										{/* {isAuthorised.toString()} */}
+										{isAuthorised ? <Check /> : <Close />}
 									</TableCell>
-									<TableCell style={{ width: 160 }} align="center">
-										{isPalindrome.toString()}
+									<TableCell style={{ width: 100 }} align="center">
+										{/* {isPalindrome.toString()} */}
+										{isPalindrome ? <Check /> : <Close />}
 									</TableCell>
-									<TableCell style={{ width: 160 }}>{sports}</TableCell>
+									<TableCell style={{ width: 180 }}>{sports}</TableCell>
 								</TableRow>
 							);
 						})}
