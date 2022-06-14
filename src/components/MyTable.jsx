@@ -187,12 +187,13 @@ export default function MyTable() {
 
 	return (
 		<>
-			<Box display="flex" gap="1rem" sx={boxSx}>
+			<Box display="flex" gap="1rem" sx={{ ...boxSx, maxWidth: '250px' }}>
 				<h6>Search by name</h6>{' '}
 				<TextField
 					label="Name"
 					value={search}
-					onChange={(e) => setSearch(e.target.value)}
+					onChange={(e) => setSearch(e.target.value.toLowerCase())}
+					sx={textFieldSx}
 				/>
 			</Box>
 			<TableContainer component={Paper}>
@@ -275,3 +276,43 @@ export default function MyTable() {
 		</>
 	);
 }
+
+export const textFieldSx = () => {
+	return {
+		marginBottom: 0,
+		width: '100%',
+		maxWidth: '300px',
+		padding: 0,
+
+		input: {
+			background: 'white',
+			borderRadius: 1,
+			color: 'blue',
+		},
+		'& .MuiOutlinedInput-root.Mui-focused': {
+			'& > fieldset': {
+				borderColor: 'blue',
+			},
+		},
+		'& label.Mui-focused': {
+			color: 'blue',
+		},
+		'& label': {
+			color: 'blue',
+		},
+		'& .MuiInput-underline:after': {
+			borderBottomColor: 'blue',
+		},
+		'& .MuiOutlinedInput-root': {
+			'& fieldset': {
+				borderColor: 'trnsparent',
+			},
+			'&:hover fieldset': {
+				borderColor: 'blue',
+			},
+			'&.Mui-focused fieldset': {
+				borderColor: 'blue',
+			},
+		},
+	};
+};

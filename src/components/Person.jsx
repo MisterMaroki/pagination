@@ -156,10 +156,18 @@ const Person = () => {
 							))}
 						</FormGroup>
 					</Box>
+					<Box sx={boxSx} display="flex">
+						<Button onClick={backHome} variant="contained" color="warning">
+							Back home
+						</Button>
+						{inputData && (
+							<Button onClick={saveUser} variant="contained" color="success">
+								Save
+							</Button>
+						)}
+					</Box>
 				</Box>
 			)}
-			<Button onClick={backHome}>Back home</Button>
-			{inputData && <Button onClick={saveUser}>Save</Button>}
 		</Container>
 	);
 };
