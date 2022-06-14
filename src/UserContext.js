@@ -28,7 +28,7 @@ const UserContext = ({ children }) => {
 				const data = await res.json();
 				people === [] && setPeople(data);
 			} catch (e) {
-				console.log(e);
+				setAlert({ open: true, message: e.message, type: 'error' });
 			}
 		};
 
