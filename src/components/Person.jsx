@@ -40,7 +40,7 @@ const Person = () => {
 			setInputData(thisPerson);
 		};
 		return () => getUserData();
-	}, [userId]);
+	}, [people, userId]);
 
 	const updateInputData = (e, field) => {
 		setInputData((prev) => ({

@@ -153,7 +153,7 @@ export default function MyTable() {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(3);
 
-	const { userId, setUserId, people } = UserState();
+	const { setUserId, people } = UserState();
 
 	const navigate = useNavigate();
 
