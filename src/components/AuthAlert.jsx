@@ -1,5 +1,4 @@
-import { Close } from '@mui/icons-material';
-import { Button, IconButton, Snackbar } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import React from 'react';
 import Alert from '@mui/material/Alert';
 import { UserState } from '../UserContext';

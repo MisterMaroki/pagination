@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { palindrome } from './utils/palindrome';
 
 const User = createContext();
 

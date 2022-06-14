@@ -8,10 +8,10 @@ import {
 	Switch,
 	TextField,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { UserState } from '../UserContext';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { palindrome } from '../utils/palindrome';
+import { UserState } from '../UserContext';
 import { textFieldSx } from './MyTable';
 
 const Person = () => {
