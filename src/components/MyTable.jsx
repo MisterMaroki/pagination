@@ -157,6 +157,7 @@ export default function MyTable() {
 	const [search, setSearch] = React.useState('');
 
 	const { setUserId, people } = UserState();
+	console.log('🚀 ~ file: MyTable.jsx ~ line 160 ~ MyTable ~ people', people);
 
 	const navigate = useNavigate();
 

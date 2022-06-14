@@ -6,7 +6,7 @@ const User = createContext();
 const UserContext = ({ children }) => {
 	const [userId, setUserId] = useState(localStorage.getItem('user') || null);
 	const [people, setPeople] = React.useState(
-		JSON.parse(localStorage.getItem('people')) || []
+		() => JSON.parse(localStorage.getItem('people')) || null
 	);
 
 	const [alert, setAlert] = useState({
@@ -27,12 +27,8 @@ const UserContext = ({ children }) => {
 					'https://run.mocky.io/v3/ceb09528-8228-4a95-b7d9-c1f945023c92'
 				);
 				const data = await res.json();
-				console.log(
-					'🚀 ~ file: UserContext.js ~ line 30 ~ getData ~ data',
-					data
-				);
 
-				people === [] && setPeople(data || fallbackData);
+				people.length !== 11 && setPeople(data);
 			} catch (e) {
 				setAlert({ open: true, message: e.message, type: 'error' });
 			}
@@ -40,19 +36,6 @@ const UserContext = ({ children }) => {
 
 		return () => getData();
 	}, [people]);
-
-	//check for palindromes in updating names.
-	//this function could be unneccessary given the computing time it uses.
-	//moved this out of an effect into the saveData function in /components/person
-
-	// useEffect(() => {
-	// 	setPeople((prev) =>
-	// 		prev.map((x) => ({
-	// 			...x,
-	// 			isPalindrome: palindrome(`${x.firstName} ${x.lastName}`),
-	// 		}))
-	// 	);
-	// }, [people]);
 
 	return (
 		<User.Provider

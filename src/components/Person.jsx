@@ -79,7 +79,7 @@ const Person = () => {
 								`${inputData.firstName} ${inputData.lastName}`
 							),
 					  }
-					: { ...x, isPalindrome: palindrome(`${x.firstName} ${x.lastName}`) };
+					: x;
 			});
 		});
 		setAlert({
