@@ -91,7 +91,6 @@ const Person = () => {
 
 	return (
 		<Container>
-			<h1>Update Person #{userId}</h1>
 			{inputData && (
 				<Box
 					display="flex"
@@ -100,6 +99,9 @@ const Person = () => {
 					flexDirection="column"
 					gap="2rem"
 				>
+					<Box display="flex" sx={boxSx}>
+						<h1>Update Person #{userId}</h1>
+					</Box>
 					<Box display="flex" gap="1rem" sx={boxSx}>
 						<h4>First Name</h4>{' '}
 						<TextField
