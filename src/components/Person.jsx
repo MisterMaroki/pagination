@@ -100,71 +100,47 @@ const Person = () => {
 					gap="2rem"
 				>
 					<Box display="flex" gap="1rem" sx={boxSx}>
-						<h6>First Name</h6>{' '}
+						<h4>First Name</h4>{' '}
 						<TextField
 							label="First Name"
 							value={inputData.firstName}
 							onChange={(e) => updateInputData(e, 'firstName')}
 						/>
 					</Box>
-					<Box display="flex" gap="1rem" sx={boxSx}>
-						<h6>Last Name</h6>{' '}
+					<Box display="flex" sx={boxSx}>
+						<h4>Last Name</h4>{' '}
 						<TextField
 							label="Last Name"
 							value={inputData.lastName}
 							onChange={(e) => updateInputData(e, 'lastName')}
 						/>
 					</Box>
-					<Box
-						sx={boxSx}
-						display="flex"
-						gap="1rem"
-						alignItems={'center'}
-						justifyContent="space-between"
-					>
-						<h6>Enabled</h6>{' '}
+					<Box sx={boxSx} display="flex">
+						<h4>Enabled</h4>{' '}
 						<Switch
 							checked={inputData.isEnabled}
 							onChange={(e) => handleSwitch(e, 'isEnabled')}
 							color="secondary"
 						/>
 					</Box>
-					<Box
-						sx={boxSx}
-						display="flex"
-						gap="1rem"
-						alignItems={'center'}
-						justifyContent="space-between"
-					>
-						<h6>Valid</h6>{' '}
+					<Box sx={boxSx} display="flex">
+						<h4>Valid</h4>{' '}
 						<Switch
 							checked={inputData.isValid}
 							onChange={(e) => handleSwitch(e, 'isValid')}
 							color="warning"
 						/>
 					</Box>
-					<Box
-						sx={boxSx}
-						display="flex"
-						gap="1rem"
-						alignItems={'center'}
-						justifyContent="space-between"
-					>
-						<h6>Authorised</h6>{' '}
+					<Box sx={boxSx} display="flex">
+						<h4>Authorised</h4>{' '}
 						<Switch
 							checked={inputData.isAuthorised}
 							onChange={(e) => handleSwitch(e, 'isAuthorised')}
 							color="primary"
 						/>
 					</Box>
-					<Box
-						sx={boxSx}
-						display="flex"
-						gap="1rem"
-						alignItems={'center'}
-						justifyContent="space-between"
-					>
-						<h6>Favourite Sports</h6>{' '}
+					<Box sx={boxSx} display="flex">
+						<h4>Favourite Sports</h4>{' '}
 						<FormGroup>
 							{inputData.favouriteSports.map((x, i) => (
 								<FormControlLabel
@@ -190,8 +166,10 @@ const Person = () => {
 
 export const boxSx = {
 	width: '100%',
-	maxWidth: '30vw',
+	maxWidth: '500px',
 	justifyContent: 'space-between',
+	alignItems: 'center',
+	gap: '1rem',
 };
 
 export default Person;
