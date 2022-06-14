@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { fallbackData } from './data';
 
 const User = createContext();
 
@@ -26,7 +27,8 @@ const UserContext = ({ children }) => {
 					'https://run.mocky.io/v3/ceb09528-8228-4a95-b7d9-c1f945023c92'
 				);
 				const data = await res.json();
-				people === [] && setPeople(data);
+
+				people === [] && setPeople(data || fallbackData);
 			} catch (e) {
 				setAlert({ open: true, message: e.message, type: 'error' });
 			}
