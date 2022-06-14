@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserState } from '../UserContext';
+import { palindrome } from '../utils/palindrome';
 
 const Person = () => {
 	const [inputData, setInputData] = useState(null);
@@ -68,10 +69,17 @@ const Person = () => {
 		}));
 	};
 
-	const saveNewUser = () => {
+	const saveUser = () => {
 		setPeople((prev) => {
 			return prev.map((x) => {
-				return x.personId === userId ? inputData : x;
+				return x.personId === userId
+					? {
+							...inputData,
+							isPalindrome: palindrome(
+								`${inputData.firstName} ${inputData.lastName}`
+							),
+					  }
+					: { ...x, isPalindrome: palindrome(`${x.firstName} ${x.lastName}`) };
 			});
 		});
 	};
@@ -171,7 +179,7 @@ const Person = () => {
 				</Box>
 			)}
 			<Button onClick={backHome}>Back home</Button>
-			{inputData && <Button onClick={saveNewUser}>Save</Button>}
+			{inputData && <Button onClick={saveUser}>Save</Button>}
 		</Container>
 	);
 };

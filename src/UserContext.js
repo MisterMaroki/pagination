@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { palindrome } from './utils/palindrome';
 
 const User = createContext();
 
@@ -32,6 +33,19 @@ const UserContext = ({ children }) => {
 
 		return () => getData();
 	}, [people]);
+
+	//check for palindromes in updating names.
+	//this function could be unneccessary given the computing time it uses.
+	//moved this out of an effect into the saveData function in /components/person
+
+	// useEffect(() => {
+	// 	setPeople((prev) =>
+	// 		prev.map((x) => ({
+	// 			...x,
+	// 			isPalindrome: palindrome(`${x.firstName} ${x.lastName}`),
+	// 		}))
+	// 	);
+	// }, [people]);
 
 	return (
 		<User.Provider value={{ userId, setUserId, people, setPeople }}>
