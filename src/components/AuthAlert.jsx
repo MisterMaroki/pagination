@@ -24,7 +24,7 @@ const AuthAlert = () => {
 					variant="filled"
 					severity={'success'}
 					color="info"
-					sx={{ backgroundColor: 'lightgreen !important' }}
+					sx={{ backgroundColor: 'lightgreen' }}
 				>
 					{alert.message}
 				</Alert>
