@@ -27,6 +27,10 @@ const UserContext = ({ children }) => {
 					'https://run.mocky.io/v3/ceb09528-8228-4a95-b7d9-c1f945023c92'
 				);
 				const data = await res.json();
+				console.log(
+					'🚀 ~ file: UserContext.js ~ line 30 ~ getData ~ data',
+					data
+				);
 
 				people === [] && setPeople(data || fallbackData);
 			} catch (e) {
