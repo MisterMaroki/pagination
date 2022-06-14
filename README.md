@@ -4,7 +4,7 @@
 - This project was bootstrapped with
   [Create React App](https://github.com/facebook/create-react-app).
 
-# Features
+## Features
 
 - Read and Update data sourced from an external api
 - Persist data locally to store updated data
