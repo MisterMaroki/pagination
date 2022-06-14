@@ -1,6 +1,6 @@
 # Tappit technical challenge - part 1
 
-- [Video Walkthrough](https://youtu.be/D96M3aiui64)
+- [Video Walkthrough](https://youtu.be/D96M3aiui64) - NOTE: before styling and some minor UX improvements
 - This project was bootstrapped with
   [Create React App](https://github.com/facebook/create-react-app).
 
