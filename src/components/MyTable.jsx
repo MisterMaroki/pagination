@@ -185,6 +185,11 @@ export default function MyTable() {
 		navigate('/person');
 	};
 
+	const handleSearch = (event) => {
+		setSearch(event.target.value.toLowerCase());
+		setPage(0);
+	};
+
 	return (
 		<>
 			<Box display="flex" gap="1rem" sx={{ ...boxSx, maxWidth: '250px' }}>
@@ -192,7 +197,7 @@ export default function MyTable() {
 				<TextField
 					label="Name"
 					value={search}
-					onChange={(e) => setSearch(e.target.value.toLowerCase())}
+					onChange={handleSearch}
 					sx={textFieldSx}
 				/>
 			</Box>
