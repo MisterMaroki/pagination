@@ -31,7 +31,7 @@ const UserContext = ({ children }) => {
 		};
 
 		return () => getData();
-	}, []);
+	}, [people]);
 
 	return (
 		<User.Provider value={{ userId, setUserId, people, setPeople }}>
