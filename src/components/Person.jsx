@@ -14,7 +14,6 @@ import { UserState } from '../UserContext';
 
 const Person = () => {
 	const [inputData, setInputData] = useState(null);
-	console.log('🚀 ~ file: Person.jsx ~ line 9 ~ Person ~ inputData', inputData);
 	const { people, userId, setPeople } = UserState();
 	const navigate = useNavigate();
 	const backHome = (e) => {
