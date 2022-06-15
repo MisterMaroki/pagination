@@ -6,7 +6,7 @@ const User = createContext();
 const UserContext = ({ children }) => {
 	const [userId, setUserId] = useState(localStorage.getItem('user') || null);
 	const [people, setPeople] = React.useState(
-		() => JSON.parse(localStorage.getItem('people')) || fallbackData
+		() => JSON.parse(localStorage.getItem('people')) || []
 	);
 
 	const [alert, setAlert] = useState({
