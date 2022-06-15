@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { fallbackData } from './data';
 
 const User = createContext();
 

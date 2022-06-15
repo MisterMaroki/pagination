@@ -8,14 +8,14 @@ import {
 	Switch,
 	TextField,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { palindrome } from '../utils/palindrome';
 import { UserState } from '../UserContext';
 import { textFieldSx } from './MyTable';
 
 const Person = () => {
-	const { people, userId, setPeople, setAlert } = UserState();
+	const { people, userId, setPeople, setAlert, setUserId } = UserState();
 	const [inputData, setInputData] = useState(() => people[userId - 1]);
 
 	const navigate = useNavigate();
@@ -36,15 +36,13 @@ const Person = () => {
 	// 	return () => getUserData();
 	// }, [userId]);
 
-	//NOTE: this side effect works, but it also causes the 'inputData' to be null on first render, meaning form fields do not render after F5(refresh)
-
-	// useEffect(() => {
-	// 	const getUserData = () => {
-	// 		const thisPerson = people.find((x) => x.personId === userId);
-	// 		setInputData(thisPerson);
-	// 	};
-	// 	return () => getUserData();
-	// }, [userId]);
+	useEffect(() => {
+		const getUserData = () => {
+			const thisPerson = people.find((x) => x.personId === userId);
+			setInputData(thisPerson);
+		};
+		getUserData();
+	}, [userId]);
 
 	const updateInputData = (e, field) => {
 		setInputData((prev) => ({
@@ -98,6 +96,13 @@ const Person = () => {
 		});
 	};
 
+	const handlePrevUser = () => {
+		setUserId(userId - 1);
+	};
+	const handleNextUser = () => {
+		if (userId < people.length) setUserId(userId + 1);
+	};
+
 	return (
 		<Container className="dark-color">
 			{inputData && (
@@ -110,6 +115,20 @@ const Person = () => {
 				>
 					<Box display="flex" sx={boxSx}>
 						<h1>Update Person #{userId}</h1>
+						<Button
+							onClick={handlePrevUser}
+							disabled={userId <= 1}
+							variant="outlined"
+						>
+							Prev
+						</Button>
+						<Button
+							onClick={handleNextUser}
+							disabled={userId === people.length}
+							variant="outlined"
+						>
+							Next
+						</Button>
 					</Box>
 					<Box display="flex" gap="1rem" sx={boxSx}>
 						<h4>First Name</h4>{' '}
