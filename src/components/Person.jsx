@@ -15,12 +15,19 @@ import { UserState } from '../UserContext';
 import { textFieldSx } from './MyTable';
 
 const Person = () => {
-	const { people, userId, setPeople, setAlert, setUserId } = UserState();
+	const { people, userId, setPeople, setAlert, setUserId, alert } = UserState();
 	const [inputData, setInputData] = useState(() => people[userId - 1]);
 
 	const navigate = useNavigate();
 	const backHome = (e) => {
-		navigate('/');
+		alert.open
+			? setTimeout(() => {
+					setAlert({
+						open: false,
+					});
+					navigate('/');
+			  }, 300)
+			: navigate('/');
 	};
 
 	//NOTE! I have commented out this sideEffect as the api will only provide data for the first user. In order to provide CRUD abilities, I need to use the already fetched data.
