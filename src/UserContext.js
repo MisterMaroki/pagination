@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-
 const User = createContext();
 
 const UserContext = ({ children }) => {

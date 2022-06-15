@@ -1,7 +1,7 @@
 import { PieChart, Pie, Cell } from 'recharts';
 import { UserState } from '../UserContext';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0d0f11', '#00C49F', '#FFBB28', '#FF8042'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -31,12 +31,23 @@ const renderCustomizedLabel = ({
 };
 export default function MyPieChart({ quantifier, title }) {
 	const { people } = UserState();
-	const truthy = people?.filter((x) => x[quantifier]).length;
-	const falsy = people?.filter((x) => !x[quantifier]).length;
+	const truthy = +people?.filter((x) => x[quantifier]).length;
+	const falsy = +people?.filter((x) => !x[quantifier]).length;
 	const data = [
 		{ name: 'Group A', value: truthy },
 		{ name: 'Group B', value: falsy },
 	];
+
+	const decideFill = (index) => {
+		if (index === 0) {
+			console.log(truthy / falsy);
+			return truthy / falsy >= 0.5
+				? COLORS[1]
+				: truthy / falsy >= 0.3
+				? COLORS[2]
+				: COLORS[3];
+		} else return COLORS[0];
+	};
 	return (
 		<>
 			<h3>{`${title}: ${truthy}/${truthy + falsy}`}</h3>
@@ -54,7 +65,7 @@ export default function MyPieChart({ quantifier, title }) {
 					label={renderCustomizedLabel}
 				>
 					{data.map((entry, index) => (
-						<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+						<Cell key={`cell-${index}`} fill={decideFill(index)} />
 					))}
 				</Pie>
 			</PieChart>
