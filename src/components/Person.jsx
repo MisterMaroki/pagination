@@ -70,11 +70,10 @@ const Person = () => {
 	};
 
 	const saveUser = () => {
-		// [inputData.firstName, inputData.lastName].forEach((x) => {
-		if (/\d/.test(inputData.firstName || inputData.lastName)) {
+		if (/[^a-z-]/i.test(inputData.firstName || inputData.lastName)) {
 			setAlert({
 				open: true,
-				message: `Names must not contain numbers.`,
+				message: `Names must contain only letters or be hyphenated.`,
 				type: 'warning',
 			});
 			return;
@@ -100,7 +99,7 @@ const Person = () => {
 	};
 
 	return (
-		<Container>
+		<Container className="dark-color">
 			{inputData && (
 				<Box
 					display="flex"

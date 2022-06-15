@@ -14,16 +14,16 @@ const AuthAlert = () => {
 		setAlert({ open: false });
 	};
 
+	const isSuccesful = alert.type === 'success';
+
 	return (
 		<div>
-			<Snackbar open={alert.open} autoHideDuration={3000} onClose={handleClose}>
+			<Snackbar open={alert.open} autoHideDuration={2000} onClose={handleClose}>
 				<Alert
 					onClose={handleClose}
 					elevation={10}
 					variant="filled"
-					severity={'success'}
-					color="warning"
-					sx={{ backgroundColor: alert.type === 'success' && 'lightgreen' }}
+					severity={isSuccesful ? 'success' : 'warning'}
 				>
 					{alert.message}
 				</Alert>
