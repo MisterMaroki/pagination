@@ -21,7 +21,6 @@ import { useNavigate } from 'react-router-dom';
 import { boxSx } from './Person';
 import { TextField } from '@mui/material';
 import { Check, Close } from '@mui/icons-material';
-import { PieChart } from './PieChart';
 
 function TablePaginationActions(props) {
 	const theme = useTheme();

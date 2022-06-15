@@ -1,8 +1,6 @@
-import { Box } from '@mui/material';
 import { Container } from '@mui/material';
 import React from 'react';
 import MyTable from './components/MyTable';
-import { boxSx } from './components/Person';
 import MyPieChart from './components/PieChart';
 export function Home() {
 	return (
